@@ -4,6 +4,9 @@ import 'package:rep_patt_proj/repositories/skw_repository_mock.dart';
 
 import 'model/skw_model.dart';
 
+//aqui temos a view onde o usuário interage e
+//visualiza os dados da api mocada, já tratados.
+
 void main() {
   runApp(const MyApp());
 }
@@ -32,12 +35,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  //ao criar o SkwController tem que passar o SkwRepository que vai trazer os dados da api mocada, já tratados e modelados.
   final SkwController _controller = SkwController(SkwRepositoryMock());
 
   @override
   void initState() {
     super.initState();
     _controller.fetch();
+    //ao iniciar a página, a lista de dados da api é carregada.
   }
 
   @override
@@ -45,13 +50,13 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(title: Text(widget.title)),
       body: ValueListenableBuilder<List<SkwModel>>(
+        //ouve e controi uma lista dos dados recebidos
         valueListenable: _controller.posts,
         builder: (_, list, __) {
           return ListView.builder(
               itemCount: list.length,
               itemBuilder: (_, idx) {
                 return ListTile(
-                  // title: Text('oiiiiiiiiii'),
                   title: Text(list[idx].name),
                 );
               });

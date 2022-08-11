@@ -1,3 +1,5 @@
+//modelo para dar forma aos dados da api mocada.
+
 class SkwModel {
   final String name;
   final String height;
